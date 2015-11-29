@@ -1,0 +1,80 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="call.css">
+</head>
+<body>
+<table>
+	<form name="f1">
+	<tr>
+		<td class="name">Name: </td>
+		<td><input type="text" id="text1"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td class="id">Id:</td>
+		<td><input type="text" id="text2"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><button onclick="setCookie()">SetCookie</button></td>
+		<td><button onclick="getCookie()">GetCookie</button></td>
+		<td><button onclick="deleteCookie()">DeleteCookie</button></td>
+	</tr>
+</table>
+<script>
+	function setCookie()
+	{
+		var x=document.f1.text1.value;
+		var y=document.f1.text2.value;
+		//window.alert(x+" "+y);
+		var d=new Date();
+		d.setTime(d.getTime()+(24*60*60*1000));
+		var expires="expires="+d.toUTCString();
+		//window.alert(expires);
+		//var z="name:"+x+";"+expires;
+		document.cookie="name="+x+";"+expires;
+		//z="id:"+y+";"+expires;
+		document.cookie="id="+y+";"+expires;
+	}
+	function getCookie()
+	{
+		x=document.cookie;
+		window.alert(x);
+		var a="name=";
+		var b="id=";
+		var pos=x.indexOf(a);
+		//window.alert(pos);
+		pos=pos+a.length;
+		end=x.indexOf(";",pos);
+		if(end==-1)
+			end=x.length;
+		//window.alert(end);
+		var c=x.substring(pos,end);
+		//window.alert(c);
+		pos=x.indexOf(b);
+		pos=pos+b.length;
+		end=x.indexOf(";",pos);
+		if(end==-1)
+			end=x.length;
+		c+=" ";
+		c+=x.substring(pos,end);
+		window.alert(c);
+	}
+	function deleteCookie()
+	{	var x=document.f1.text1.value;
+		var y=document.f1.text2.value;
+		//window.alert(x+" "+y);
+		var d=new Date();
+		d.setTime(d.getTime()+(-24*60*60*1000));
+		var expires="expires="+d.toUTCString();
+		//window.alert(expires);
+		//var z="name:"+x+";"+expires;
+		document.cookie="name="+x+";"+expires;
+		//z="id:"+y+";"+expires;
+		document.cookie="id="+y+";"+expires;
+	}
+</script>
+</body>
+
+</html>
